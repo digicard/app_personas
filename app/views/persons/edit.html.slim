@@ -1,0 +1,52 @@
+nav.navbar.navbar-inverse.navbar-fixed-top
+  .container-fluid
+    .navbar-header
+      button.navbar-toggle.collapsed[type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"]
+        span.sr-only
+          | Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand
+        | Editar persona
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      ul.nav.navbar-nav.navbar-right
+        li
+          a[href=root_path]
+            | Home
+        li
+          a[href=request.referer]
+            | Atras
+        li
+          a[href="#"]
+            | Logout
+
+.container
+  .col-xs-4.text-center
+    /.profile-header-container
+      .profile-header-img
+        img#img_prev.img-thumbnail[width="200" height="200" src="/assets/default_avatar.png" alt="your image"]
+        br
+        span.btn.btn-info.btn-file
+          |  Seleccionar foto
+          = @person.file_field :Foto, id: "avatar-upload"
+        br
+        br
+          /= p.hidden_field :Foto_cache
+  .col-xs-8
+    ul.nav.nav-tabs
+      li.active
+        a[data-toggle="tab" href="#home"]
+          | Persona
+      li
+        a[data-toggle="tab" href="#menu1"]
+          | Control de acceso
+  .tab-content
+    #home.tab-pane.fade.in.active.text-center
+      h3
+        br
+      =render 'edit_person_data'
+    #menu1.tab-pane.fade.text-center
+      h3
+        br
+      =render 'edit_personca_data'

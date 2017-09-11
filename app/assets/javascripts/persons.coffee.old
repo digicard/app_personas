@@ -1,0 +1,113 @@
+$(document).ready (e) ->
+  $('#btn_save').on 'click', (e) ->
+    apellido = $('#napellido').val()
+    nombre = $('#nnombre').val()
+    tdoc = $('#ntdoc').val()
+    ndoc = $('#nndoc').val()
+    cuil = $('#ncuil1').val() + $('#ncuil2').val() + $('#ncuil3').val()
+    d = new Date()
+    fecha = d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear()
+    contacto = $('#ncontacto').val()
+    categoria = $('#ncateg').val()
+
+    switch tdoc
+    when '2'
+      tdoc = 'LE'
+    when '3'
+      tdoc = 'LC'
+    when '4'
+      tdoc = 'CI'
+    else
+      tdoc = 'DNI'
+
+
+  $('#btn_cancel').on 'click', (e) ->
+    $('#napellido').val("")
+    $('#nnombre').val("")
+    $('#ntdoc').val("Documento Nacional de Identidad")
+    $('#nndoc').val("")
+    $('#ncuil1').val("")
+    $('#ncuil2').val("")
+    $('#ncuil3').val("")
+    $('#radio1').prop("checked", true)
+    $('#ncontacto').val("")
+    $('#ncateg').val("Empleado")
+  return
+
+return
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$(document).ready (e) ->
+  $('#personform').on 'show.bs.modal', (e) ->
+    apellido = $('#napellido').val()
+    nombre = $('#nnombre').val()
+    tdoc = $('#ntdoc').val()
+    ndoc = $('#nndoc').val()
+    cuil = $('#ncuil').val()
+    d = new Date()
+    fecha = d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear()
+    estado = $('#radio2').val()
+    email = $('#nemail').val()
+    categoria = $('#ncateg').val()
+
+    $(e.currentTarget).find('input[name="apellido"]').val(apellido);
+    $(e.currentTarget).find('input[name="nombre"]').val(nombre);
+    switch tdoc
+      when '2'
+        $(e.currentTarget).find('input[name="tdoc"]').val('Libreta de Enrolamiento');
+      when '3'
+        $(e.currentTarget).find('input[name="tdoc"]').val('Libreta Civica');
+      when '4'
+        $(e.currentTarget).find('input[name="tdoc"]').val('Cedula de Identidad');
+      else
+        $(e.currentTarget).find('input[name="tdoc"]').val('Documento Nacional de Identidad');
+    
+    $(e.currentTarget).find('input[name="ndoc"]').val(ndoc);
+    $(e.currentTarget).find('input[name="ncuil"]').val(cuil);
+    $(e.currentTarget).find('input[name="nfecha"]').val(fecha);
+    if estado?
+      $(e.currentTarget).find('input[name="nestado"]').val("Habilitado");
+    else
+      $(e.currentTarget).find('input[name="nestado"]').val("Deshabilitado");
+
+    $(e.currentTarget).find('input[name="ncontacto"]').val(contacto);
+    switch categoria
+      when '2'
+        $(e.currentTarget).find('input[name="ncategoria"]').val('Pasante');
+      when '3'
+        $(e.currentTarget).find('input[name="ncategoria"]').val('Contratado');
+      when '4'
+        $(e.currentTarget).find('input[name="ncategoria"]').val('Proveedor');
+      when '5'
+        $(e.currentTarget).find('input[name="ncategoria"]').val('Visitante');       
+      else
+        $(e.currentTarget).find('input[name="ncategoria"]').val('Empleado');
+  
+  return
+return

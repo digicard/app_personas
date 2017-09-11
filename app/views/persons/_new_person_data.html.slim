@@ -1,0 +1,145 @@
+=form_for @person, :url => { :action => :create }  do |p|
+  - if @person.errors.any?
+    #error_explanation
+    h2
+      = pluralize(@person.errors.count, "error")
+      |  prohibited this person from being saved:
+    ul
+      - @person.errors.full_messages.each do |message|
+        li
+          = message
+
+  .col-xs-12.col-md-12
+    .col-xs-12.col-md-6.col-md-offset-1.text-right
+      .profile-header-container[style="margin-right: -33px"]
+        .profile-header-img
+          img#nw_img_prev.img-circle[width="100" height="100" src="/assets/default_avatar.jpg" alt="your image"]
+
+    .col-xs-12.col-md-5[style="height: 100px"]
+      .col-xs-6.col-md-6.text-center[style="width: 75px"]
+        label.inputfile[title="Seleccionar archivo" style="margin-top: 30px"]
+          = p.file_field :Foto, class: "inputfile", id: "avatar-upload"
+          span
+            i#agregar_p.glyphicon.glyphicon-folder-open
+        br
+        br
+        br
+
+      .col-xs-6.col-md-6[style="margin-left: -15px"]
+        button#photo.btn.btn-default[type="button" data-toggle="modal" data-target="#myModal" title="Tomar foto" style="border-radius: 3px; margin-top: 30px;margin-left: -15px"]
+          i#agregar_p.glyphicon.glyphicon-camera
+        #myModal.modal.fade.bd-example-modal-lg[tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"]
+          .modal-dialog.modal-lg[role="document"]
+            .modal-content
+              .modal-header
+                .col-xs-1
+                .col-xs-10.text-center
+                  h5#exampleModalLabel.modal-title
+                .col-xs-1
+                  button.close[type="button" data-dismiss="modal" aria-label="Close"]
+                    i.glyphicon.glyphicon-remove[aria-hidden="true" data-toggle="tooltip" title="Cerrar"]
+              .modal-body.text-center[style="margin-left: 23px;height: 300px"]
+                .col-xs-6
+                  #my_camera
+                  input[type="button" value="Tomar Foto" onclick="take_snapshot()"]
+                  .field
+                    = p.hidden_field :image
+                    /= p.label :image
+                    /| : 
+                    br
+                .col-xs-6
+                  #results
+                    | La captura de la imagen aparecerá aquí...
+
+        br
+        br
+        br
+
+    /.col-xs-12.col-md-7.text-center
+      .profile-header-container[style="margin-left: -99px"]
+        .profile-header-img
+          img#nw_img_prev.img-circle[width="100" height="100" src="/assets/default_avatar.jpg" alt="your image"]
+    /.col-xs-1[style="margin-left: 0px;margin-top: 0px"]
+      button#del_photo_btn.btn[type="button" title="Eliminar foto" style="background: transparent; width: 30px;height: 31px;margin-left: 20px; margin-top: -25px"]
+        i.glyphicon.glyphicon-remove[aria-hidden="true" data-toggle="tooltip" title="Eliminar foto" style="margin-left: -16px; margin-top: -12px"]
+
+    .row
+      .col-xs-12.col-md-3.text-right[style="margin-top: 5px"]
+        p
+          strong
+            | Apellido
+      .col-xs-12.col-md-7.text-left
+        = p.text_field :Apellido, class: "form-control input-xs", :required => true, :pattern => "[A-Z][A-z|-|']+", :id => "npd_Apellido"
+      .col-xs-1.col-md-2
+        br
+        br
+
+    .row
+      .col-xs-12.col-md-3.text-right[style="margin-top: 5px"]
+        p
+          strong
+            | Nombre
+      .col-xs-12.col-md-7.text-left
+        = p.text_field :Nombre, class: "form-control input-xs", :required => true, :pattern => "[A-Z][A-z|-|']+", :id => "npd_Nombre"
+      .col-xs-1.col-md-2
+        br
+        br
+
+    .row
+      .col-xs-12.col-md-3.text-right[style="margin-top: 5px"]
+        p
+          strong
+            | Tipo
+      .col-xs-12.col-md-7.text-left
+        = p.select :TDoc, options_for_select( [ ['Documento Nacional de Identidad', 'DNI'], ['Libreta de Enrolamiento', 'LE'],
+                                                ['Libreta Civica', 'LC'], ['Cedula de Identidad', 'CI'] ] ), { },
+                                                { 'data-width' => "100%", :class => "selectpicker" }
+            /= p.select :TDoc, options_for_select( [ ['Herr', 'Herr'], ['Frau', 'Frau'] ] ), { }, { 'data-width' => "100%", :class => "selectpicker"}
+      .col-xs-1.col-md-2
+        br
+        br
+
+    .row
+      .col-xs-12.col-md-3.text-right[style="margin-top: 5px"]
+        p
+          strong
+            | Documento
+      .col-xs-12.col-md-7.text-left
+        = p.text_field :NDoc, class: "form-control input-xs", :required => true, :pattern => '[0-9]+', :id => "npd_NDoc"
+      .col-xs-1.col-md-2
+        br
+        br
+
+    .row
+      .col-xs-12.col-md-3.text-right[style="margin-top: 5px"]
+        p
+          strong
+            | Estado
+      .col-xs-6.col-md-4.text-left[style="margin-top: 3px"]
+        - p.label :Habilitada
+        = p.radio_button :Habilitada, true, :checked => true
+        = p.label :Habilitada, "Habilitado", :value => "true"
+      .col-xs-6.col-md-5.text-left[style="margin-top: 3px"]
+        = p.radio_button :Habilitada, false
+        = p.label :Habilitada, "Deshabilitado", :value => "false"
+        br
+        br
+
+    .row
+      .col-xs-12.col-md-3.text-right[style="margin-top: 5px"]
+        p
+          strong
+            | CUIL
+      .col-xs-12.col-md-7.text-left
+        = p.text_field :CUIL, {class: "form-control input-xs"}
+      .col-xs-1.col-md-2
+        br
+        br
+        br
+
+    .row
+      .col-xs-12.col-md-12
+        .col-xs-6.col-md-6.text-right
+          = button_tag "Cancelar", :type => 'button', :class => "Submt_btn", :onclick => "location.href = '#{persons_list_view_path('index')}'"
+        .col-xs-6.col-md-6.text-left
+          = p.submit "Agregar ", :class => "Submt_btn"

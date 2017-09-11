@@ -1,0 +1,57 @@
+# SQL Server (2012 or higher recommended)
+#
+# Install the adapters and driver
+#   gem install tiny_tds
+#   gem install activerecord-sqlserver-adapter
+#
+# Ensure the activerecord adapter and db driver gems are defined in your Gemfile
+#   gem 'tiny_tds'
+#   gem 'activerecord-sqlserver-adapter'
+#
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: xlw7990
+  username: postgres
+  password: Digicard01
+
+development:
+  <<: *default
+  database: DigicardCloud #app_personas_development
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: app_personas_test
+
+# As with config/secrets.yml, you never want to store sensitive information,
+# like your database password, in your source code. If your source code is
+# ever seen by anyone, they now have access to your database.
+#
+# Instead, provide the password as a unix environment variable when you boot
+# the app. Read http://guides.rubyonrails.org/configuring.html#configuring-a-database
+# for a full rundown on how to provide these environment variables in a
+# production deployment.
+#
+# On Heroku and other platform providers, you may have a full connection URL
+# available as an environment variable. For example:
+#
+#   DATABASE_URL="sqlserver://myuser:mypass@localhost/somedatabase"
+#
+# You can use this database configuration with:
+#
+#   production:
+#     url: <%= ENV['DATABASE_URL'] %>
+#
+# Heroku
+production:
+  <<: *default
+  host: ec2-54-163-233-201.compute-1.amazonaws.com
+  database: d60t16b388c8el
+  username: wcyohhlqskbljp
+  password: 20e76a9d6b4a2d5f82fb28c16e542bd001185c9561acd4776ce1dcd4566953f3
+  #database: app_personas_production
+  #username: app_personas
+  #password: <%= ENV['APP_PERSONAS_DATABASE_PASSWORD'] %>

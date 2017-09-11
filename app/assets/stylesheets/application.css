@@ -1,0 +1,173 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require bootstrap_and_overrides
+ *= require select2
+ *= require select2-bootstrap
+ *= require bootstrap-datepicker
+ *= require bootstrap-select
+ */
+
+/* Custom Image Preview Style */
+#ed_img_prev, #img_prev{
+    padding: 4px;
+    border: 2px solid #bdc3c7;
+        border-top-width: 2px;
+        border-right-width: 2px;
+        border-bottom-width: 2px;
+        border-left-width: 2px;
+        border-top-style: solid;
+        border-right-style: solid;
+        border-bottom-style: solid;
+        border-left-style: solid;
+        border-top-color: rgb(189, 195, 199);
+        border-right-color: rgb(189, 195, 199);
+        border-bottom-color: rgb(189, 195, 199);
+        border-left-color: rgb(189, 195, 199);
+        -moz-border-top-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        border-image-source: none;
+        border-image-slice: 100% 100% 100% 100%;
+        border-image-width: 1 1 1 1;
+        border-image-outset: 0 0 0 0;
+        border-image-repeat: stretch stretch;
+    border-radius: 6px;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 6px;
+
+}
+
+/* File Browser Style (Hide File Browser Button) */
+label.inputfile input[type="file"] {
+    position: fixed;
+    top: -1000px;
+}
+.inputfile {
+    width: 46px;
+    height: 41px;
+    margin-bottom: 0px;
+    /*border: 2px solid #AAA;*/
+    border-radius: 3px;
+    padding: 2px 5px;
+    /*margin: 2px;*/
+    background: #bdc3c7;
+    display: inline-block;
+    /*overflow: hidden;*/
+}
+.inputfile:hover {
+    background: #bdc3c7;
+    cursor: pointer;
+}
+.inputfile:active {
+    background: #bdc3c7;
+}
+.inputfile :invalid + span {
+    color: #A44;
+}
+.inputfile :valid + span {
+    color: #4A4;
+}
+
+/* Cobobox Selector Style */
+.btn.dropdown-toggle.btn-info {
+    color: #34495e;
+    background-color: #ffffff;
+    height: 42px;
+    
+    border: 2px solid #bdc3c7 !important; /* overrides default filter */
+        border-top-width: medium;
+        border-right-width: medium;
+        border-bottom-width: medium;
+        border-left-width: medium;
+        border-top-style: none;
+        border-right-style: none;
+        border-bottom-style: none;
+        border-left-style: none;
+        border-top-color: currentcolor;
+        border-right-color: currentcolor;
+        border-bottom-color: currentcolor;
+        border-left-color: currentcolor;
+        -moz-border-top-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        border-image-source: none;
+        border-image-slice: 100% 100% 100% 100%;
+        border-image-width: 1 1 1 1;
+        border-image-outset: 0 0 0 0;
+        border-image-repeat: stretch stretch;
+    
+    border-radius: 6px !important;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 6px;
+}
+
+.btn.dropdown-toggle.btn-info:hover {
+    color: #34495e;
+    background-color: #ffffff;
+}
+
+.Submt_btn {
+    color: #34495e;
+    background-color: #ffffff;
+    height: 42px;
+    
+    border: 2px solid #bdc3c7 !important; /* overrides default filter */
+        border-top-width: medium;
+        border-right-width: medium;
+        border-bottom-width: medium;
+        border-left-width: medium;
+        border-top-style: none;
+        border-right-style: none;
+        border-bottom-style: none;
+        border-left-style: none;
+        border-top-color: currentcolor;
+        border-right-color: currentcolor;
+        border-bottom-color: currentcolor;
+        border-left-color: currentcolor;
+        -moz-border-top-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        border-image-source: none;
+        border-image-slice: 100% 100% 100% 100%;
+        border-image-width: 1 1 1 1;
+        border-image-outset: 0 0 0 0;
+        border-image-repeat: stretch stretch;
+    
+    border-radius: 6px !important;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 6px;
+
+    text-align:center;
+}
+
+.Submt_btn:active{
+/* Creo el efecto de hundimiento para el botón */
+    transform : perspective(600px) translateZ(-75px);
+}
+
+.Submt_btn:disabled{
+    color     : #BBB;
+    cursor: not-allowed;
+    pointer-events: none;
+}

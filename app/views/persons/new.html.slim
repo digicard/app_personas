@@ -1,0 +1,40 @@
+nav.navbar.navbar-inverse.navbar-fixed-top
+  .container-fluid
+    .navbar-header
+      button.navbar-toggle.collapsed[type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"]
+        span.sr-only
+          | Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand
+        | Agregar persona
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      ul.nav.navbar-nav.navbar-right
+        li
+          a[href=root_path]
+            | Home
+        li
+          a[href=persons_list_view_path('index')]
+            /a[href=request.referer]
+            | Atras
+        li
+          a[href="#"]
+            | Logout
+
+.container-fluid[style="margin-left: 50px;margin-right: 50px"]
+  .col-xs-12.col-md-6.text-center
+    label.custom-control.custom-checkbox[style="margin-top: -7px"]
+      input#pn_chkbox.custom-control-input[type="checkbox"]
+      span.custom-control-indicator
+      span.custom-control-description[style="font-size: 24px;font-weight: 700"]
+        | Persona nueva
+    #div_show_person[style="margin-top: -3px"]
+      =render 'show_person'
+    #div_new_person_data[style="margin-top: -3px"]
+      =render 'new_person_data'
+  .col-xs-12.col-md-6.text-center
+    strong
+      p[style="font-size: 24px;font-weight: 700"]
+        | Persona existente
+    =render 'new_personca_data'

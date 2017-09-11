@@ -1,0 +1,92 @@
+=form_for @personca, :url => { :action => :create_person_ca}  do |p|
+  - if @person.errors.any?
+    #error_explanation
+    h2
+      = pluralize(@person.errors.count, "error")
+      |  prohibited this person from being saved:
+    ul
+      - @person.errors.full_messages.each do |message|
+        li
+          = message
+
+          /img.img[src="/assets/default_avatar.png"]
+    /.col-xs-12.text-center
+      label.custom-file
+        input#file.custom-file-input[type="file"]
+        span.custom-file-control
+  .col-xs-12.col-md-12
+    .row
+      .col-xs-12.col-md-12.text-center
+        select#persel.js-example-placeholder-single[style="height: 42px;width: 243px" name="pid"]
+          - persons = show_persons_wout_ca
+          - persons.each do |persona|
+            /Para mostrar el placeholder
+            option
+            option[value="#{persona.PersonaID}"]
+              = persona.Apellido
+              |  
+              = persona.Nombre
+              |  (
+              = persona.NDoc
+              | )
+        br
+        br
+        br
+
+    .row
+      .col-xs-12.col-md-3.text-right[style="margin-top: 5px"]
+        p
+          strong
+            | Fecha
+      .col-xs-12.col-md-7.text-left
+        = p.text_field :FecAlta, class: "form-control input-xs", "data-provide" => 'datepicker', :required => true
+        //= p.text_field :FecAlta, class: "form-control input-xs[value=time]" Time.new.strftime "%d/%m/%Y"
+      .col-xs-1.col-md-2
+        br
+        br
+
+    .row
+      .col-xs-12.col-md-3.text-right[style="margin-top: 5px"]
+        p
+          strong
+            | Estado
+      .col-xs-6.col-md-4.text-left[style="margin-top: 3px"]
+        - p.label :Habilitada
+        = p.radio_button :Habilitada, true, :checked => true
+        = p.label :Habilitada, "Habilitado", :value => "true"
+      .col-xs-6.col-md-5.text-left[style="margin-top: 3px"]
+        = p.radio_button :Habilitada, false
+        = p.label :Habilitada, "Deshabilitado", :value => "false"
+      br
+      br
+
+    .row
+      .col-xs-12.col-md-3.text-right[style="margin-top: 5px"]
+        p
+          strong
+            | Contacto
+      .col-xs-12.col-md-7.text-left
+        = p.text_field :Contacto, class: "form-control input-xs"
+      .col-xs-1.col-md-2
+        br
+        br
+
+    .row 
+      .col-xs-12.col-md-3.text-right[style="margin-top: 5px"]
+        p
+          strong
+            | Categoría
+      .col-xs-12.col-md-7.text-left
+        = p.select :CategID, options_for_select( get_categs(1) ), { },
+                                                   {'data-width' => "100%", :class => "selectpicker"}
+      .col-xs-1.col-md-2
+        br
+        br
+        br
+
+    .row
+      .col-xs-12.col-md-12
+        .col-xs-6.col-md-6.text-right
+          = button_tag "Cancelar", :type => 'button', :class => "Submt_btn", :onclick => "location.href = '#{persons_list_view_path('index')}'"
+        .col-xs-6.col-md-6.text-left
+          = p.submit "Guardar ", id: 'submitca', :class => "Submt_btn"

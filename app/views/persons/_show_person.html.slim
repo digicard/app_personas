@@ -1,0 +1,75 @@
+.col-xs-12.col-md-12
+  .row
+    .col-xs-10.col-xs-offset-1.col-md-10.col-md-offset-1.text-center
+      .profile-header-container
+        .profile-header-img
+          -if @person.Foto != nil
+            img#img_previw.img-circle[src="#{@person.Foto}" width="100" height="100"]
+          -else
+            img#img_previw.img-circle[src="/assets/default_avatar.jpg" width="100" height="100"]
+  
+  .row
+    .col-xs-12.col-md-3.text-right[style="margin-top: 5px"]
+      p
+        strong
+          | Apellido
+    .col-xs-12.col-md-7.text-left
+      input#apellido_inp.form-control[type="text" style="color: #3F729B" name="apellido" disabled]
+    .col-xs-1.col-md-2
+      br
+      br
+
+  .row
+    .col-xs-12.col-md-3.text-right[style="margin-top: 5px"]
+      p
+        strong
+          | Nombre
+    .col-xs-12.col-md-7.text-left
+      input#nombre_inp.form-control[type="text" style="color: #3F729B" name="nombre" disabled]
+    .col-xs-1.col-md-2
+      br
+      br
+
+  .row        
+    .col-xs-12.col-md-3.text-right[style="margin-top: 5px"]
+      p
+        strong
+          | Tipo
+    .col-xs-12.col-md-7.text-left
+      input#tdoc_inp.form-control[type="text" style="color: #3F729B" value=@person.TDoc disabled]
+    .col-xs-1.col-md-2
+      br
+      br
+
+  .row 
+    .col-xs-12.col-md-3.text-right[style="margin-top: 5px"]
+      p
+        strong
+          | Documento
+    .col-xs-12.col-md-7.text-left
+      input#ndoc_inp.form-control[type="text" style="color: #3F729B" value=@person.NDoc disabled]
+    .col-xs-1.col-md-2
+      br
+      br
+
+  .row 
+    .col-xs-12.col-md-3.text-right[style="margin-top: 5px"]
+      p
+        strong
+          | Estado
+    .col-xs-12.col-md-7.text-left
+      input#estado_inp.form-control[type="text" style="color: #3F729B" value=@person.Habilitada disabled]
+    .col-xs-1.col-md-2
+      br
+      br
+
+  .row
+    .col-xs-12.col-md-3.text-right[style="margin-top: 5px"]
+      p
+        strong
+          | CUIL
+    .col-xs-12.col-md-7.text-left
+      input#cuil_inp.form-control[type="text" style="color: #3F729B" value=@person.CUIL disabled]
+    .col-xs-1.col-md-2
+      br
+      br

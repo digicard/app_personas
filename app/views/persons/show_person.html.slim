@@ -1,0 +1,249 @@
+nav.navbar.navbar-inverse.navbar-fixed-top
+  .container-fluid
+    .navbar-header
+      button.navbar-toggle.collapsed[type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"]
+        span.sr-only
+          | Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand
+        | Ver persona
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      ul.nav.navbar-nav.navbar-right
+        li
+          a[href=root_path]
+            | Home
+        li
+          a[href=request.referer]
+            | Atras
+        li
+          a[href="#"]
+            | Logout
+
+.container#showdata
+  .row
+    .col-xs-12.text-center
+      .profile-header-container
+        .profile-header-img
+          -if File.exist?('app/assets/images/' + @person.PersonaID + '.jpg')
+            img#img_prev.img-thumbnail[width="267" height="269" src="/assets/#{@person.PersonaID}.jpg" alt="your image" style="margin-top: -89px"]
+          -else
+            img#img_prev.img-thumbnail[width="267" height="269" src="/assets/default_avatar.png" alt="your image" style="margin-top: -89px"]
+
+    .col-xs-8.col-xs-offset-2
+      #accordion.panel-group
+        #panel1.panel.panel-primary
+          .panel-heading
+            h4.panel-title.text-center
+              a[data-toggle="collapse" data-target="#collapseOne" style="text-decoration:none"]
+                | Datos Personales
+          #collapseOne.panel-collapse.collapse.in
+            .panel-body
+              .col-xs-2
+                h5
+                  p
+                    strong
+                      | Apellido
+              .col-xs-8
+                input.form-control[type="text" width="20" value=Person.find(@person.PersonaID).Apellido disabled]
+              .col-xs-2
+                h2
+                  p
+                    | .
+
+              .col-xs-2
+                h5
+                  p
+                    strong
+                      | Nombre/s:
+              .col-xs-8
+                input.form-control[type="text" value=Person.find(@person.PersonaID).Nombre disabled]
+              .col-xs-2
+                h2
+                  p
+                    | .
+
+              .col-xs-2
+                h5
+                  p
+                    strong
+                      | Tipo doc:
+              .col-xs-8
+                - case Person.find(@person.PersonaID).TDoc
+                  - when "DNI"
+                    input.form-control[type="text" value="Documento Nacional de Identidad" disabled]
+                  - when "LE"
+                    input.form-control[type="text" value="Libreta de Enrolamiento" disabled]
+                  - when "LC"
+                    input.form-control[type="text" value="Libreta Civica" disabled]
+                  - when "CI"
+                    input.form-control[type="text" value="Cedula de Identidad" disabled]
+              .col-xs-2
+                h2
+                  p
+                    | .
+
+              .col-xs-2
+                h5
+                  p
+                    strong
+                      | Num doc:
+              .col-xs-8
+                input.form-control[type="text" value=Person.find(@person.PersonaID).NDoc disabled]
+              .col-xs-2
+                h2
+                  p
+                    | .
+
+              .col-xs-2
+                h5
+                  p
+                    strong
+                      | CUIL:
+              .col-xs-8
+                input.form-control[type="text" value=Person.find(@person.PersonaID).CUIL disabled]
+              .col-xs-2
+                h2
+                  p
+                    | .
+
+              .col-xs-2
+                h5
+                  p
+                    strong
+                      | Estado:
+              .col-xs-8
+                - if @person.Habil?
+                  .col-xs-6
+                    input#radio1.custom-control-input[name="radio" type="radio" checked disabled]
+                      strong
+                        |   Habilitado
+                  .col-xs-6
+                    input#radio2.custom-control-input[name="radio" type="radio" disabled]
+                      strong
+                        |   Deshabilitado
+                - else
+                  .col-xs-6
+                    input#radio1.custom-control-input[name="radio" type="radio" disabled]
+                      strong
+                        |   Habilitado
+                  .col-xs-6
+                    input#radio2.custom-control-input[name="radio" type="radio" checked disabled]
+                      strong
+                        |   Deshabilitado
+              .col-xs-2
+                h2
+                  p
+                    | .
+
+              .col-xs-2
+                h5
+                  p
+                    strong
+                      | Dirección:
+              .col-xs-8
+                input.form-control[type="text" ]
+              .col-xs-2
+                h2
+                  p
+                    | .
+
+              .col-xs-2
+                h5
+                  p
+                    strong
+                      | Telefono:
+              .col-xs-8
+                input.form-control[type="text"]
+              .col-xs-2
+                h2
+                  p
+                    | .
+
+              /.col-xs-2
+                h5
+                  p
+                    strong
+                      | E-Mail:
+              /.col-xs-8
+                input.form-control[type="text" value=@person.Contacto disabled]
+              /.col-xs-2
+                h2
+                  p
+                    | .
+
+
+        /#panel2.panel.panel-primary
+          .panel-heading
+            h4.panel-title.text-center
+              a.collapsed[data-toggle="collapse" data-target="#collapseTwo" style="text-decoration:none"]
+                |  Datos Empresa
+          #collapseTwo.panel-collapse.collapse
+            .panel-body
+              .col-xs-2
+                h5
+                  p
+                    strong
+                      | Nombre:
+              .col-xs-8
+                input.form-control[type="text" value=Empresa.find(@person.EmpresaID).Nombre disabled]
+              .col-xs-2
+                h2
+                  p
+                    | .
+
+        /      .col-xs-2
+                h5
+                  p
+                    strong
+                      | Descripcion:
+              .col-xs-8
+                input.form-control[type="text" value=Empresa.find(@person.EmpresaID).Descripcion disabled]
+              .col-xs-2
+                h2
+                  p
+                    | .
+
+        /      .col-xs-2
+                h5
+                  p
+                    strong
+                      | CUIT:
+              .col-xs-8
+                input.form-control[type="text" value=Empresa.find(@person.EmpresaID).CUIT disabled]
+              .col-xs-2
+                h2
+                  p
+                    | .
+
+        /#panel3.panel.panel-primary
+          .panel-heading
+            h4.panel-title.text-center
+              a.collapsed[data-toggle="collapse" data-target="#collapseThree" style="text-decoration:none"]
+                |  Categoria
+          #collapseThree.panel-collapse.collapse
+            .panel-body
+              .col-xs-2
+                h5
+                  p
+                    strong
+                      | Nombre:
+              .col-xs-8
+                input.form-control[type="text" value=Categorias.find(@person.CategID).Nombre disabled]
+              .col-xs-2
+                h2
+                  p
+                    | .
+
+        /      .col-xs-2
+                h5
+                  p
+                    strong
+                      | Descripcion:
+              .col-xs-8
+                input.form-control[type="text" value=Categorias.find(@person.CategID).Descripcion disabled]
+              .col-xs-2
+                h2
+                  p
+                    | .

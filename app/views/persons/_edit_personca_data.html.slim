@@ -1,0 +1,88 @@
+=form_for @person.person_ca, :url => :update_person_ca, :method => :patch  do |p|
+  /- if @personca.errors.any?
+    #error_explanation
+    h2
+      = pluralize(@person.errors.count, "error")
+      |  prohibited this person from being saved:
+    ul
+      - @personca.errors.full_messages.each do |message|
+        li
+          = message
+
+          /img.img[src="/assets/default_avatar.png"]
+    /.col-xs-12.text-center
+      label.custom-file
+        input#file.custom-file-input[type="file"]
+        span.custom-file-control
+  .col-xs-4[style="margin-left: -0px"]
+    -if File.exist?('app/assets/images/' + @personca[0][:PersonaID].to_s + '.jpg')
+      img#img_prev.img-rounded[width="267" height="203" src="/assets/#{@personca[0][:PersonaID]}.jpg" alt="your image" style="margin-top: -89px"]
+    -else
+      img#img_prev.img-rounded[width="267" height="203" src="/assets/default_avatar.png" alt="your image" style="margin-top: -89px"]
+  .col-xs-8
+    .col-xs-4.text-right[style="margin-top: 4px"]
+      p
+        strong
+          | Fecha
+    .col-xs-6.text-left
+      = p.text_field :FecAlta, class: "form-control input-xs", "data-provide" => 'datepicker', :required => true, :value => format_date(@personca[0].FecAlta)
+    .col-xs-2
+      br
+      br 
+
+    .col-xs-4.text-right[style="margin-top: 4px"]
+      p
+        strong
+          | Estado
+
+    .col-xs-3.text-left[style="margin-top: 3px"]
+      - p.label :Habilitada
+      = p.radio_button :Habilitada, true, :checked => true
+      = p.label :Habilitada, "Habilitado", :value => "true"
+    .col-xs-3.text-right[style="margin-top: 3px"]
+      = p.radio_button :Habilitada, false
+      = p.label :Habilitada, "Deshabilitado", :value => "false"
+    .col-xs-2
+      br
+      br
+
+    .col-xs-4.text-right[style="margin-top: 4px"]
+      p
+        strong
+          | Contacto
+    .col-xs-6.text-left
+      = p.text_field :Contacto, class: "form-control input-xs"
+    .col-xs-2
+      br
+      br
+              
+    .col-xs-4.text-right[style="margin-top: 4px"]
+      p
+        strong
+          | Categoría
+    .col-xs-6.text-left
+      -case @personca[0].CategID
+        -when 1
+          = p.select :CategID, options_for_select( get_categs(1) ), { },
+                                                     {'data-width' => "100%", :class => "selectpicker"}
+        -when 2
+          = p.select :CategID, options_for_select( get_categs(2) ), { },
+                                                     {'data-width' => "100%", :class => "selectpicker"}
+        -when 3
+          = p.select :CategID, options_for_select( get_categs(3) ), { },
+                                                     {'data-width' => "100%", :class => "selectpicker"}
+        -when 4
+          = p.select :CategID, options_for_select( get_categs(4) ), { },
+                                                     {'data-width' => "100%", :class => "selectpicker"}
+        -when 5
+          = p.select :CategID, options_for_select( get_categs(5) ), { },
+                                                     {'data-width' => "100%", :class => "selectpicker"}
+
+    .col-xs-2
+      br
+      br
+
+    .col-xs-6.text-right
+      = button_tag "Cancelar", :type => 'button', :class => "Submt_btn", :onclick => "location.href = '#{persons_list_view_path('index')}'"
+    .col-xs-6.text-left
+      = p.submit "Guardar ", :class => "Submt_btn"

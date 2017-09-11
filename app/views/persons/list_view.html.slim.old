@@ -1,0 +1,169 @@
+nav.navbar.navbar-inverse.navbar-fixed-top
+  .container-fluid
+    .navbar-header
+      button.navbar-toggle.collapsed[type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"]
+        span.sr-only
+          | Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand
+        | Personas
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      /ul.nav.navbar-nav
+        li.active
+          a[href="#"]
+            | Link 
+            span.sr-only
+              | (current)
+        li
+          a[href="#"]
+            | Link
+        li.dropdown
+          a.dropdown-toggle[href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"]
+            | Dropdown 
+            span.caret
+          ul.dropdown-menu
+            li
+              a[href="#"]
+                | Action
+            li
+              a[href="#"]
+                | Another action
+            li
+              a[href="#"]
+                | Something else here
+            li.divider[role="separator"]
+            li
+              a[href="#"]
+                | Separated link
+            li.divider[role="separator"]
+            li
+              a[href="#"]
+                | One more separated link
+      ul.nav.navbar-nav.navbar-right
+        li
+          a[href=root_path]
+            | Home
+        li
+          a[href="#"]
+            | Logout
+  nav#buscador.navbar.navbar.affix
+    .container
+      .row
+        .col-xs-9
+          form.form-horizontal
+            .form-group
+              .col-xs-1.col-xs-offset-1
+                button.btn.btn-default[type="submit"]
+                  | Buscar
+              .col-xs-10
+                input#search.form-control[type="text" placeholder="Buscar personas"]
+        .col-xs-1.text-center
+          a[href=new_person_path]
+            button#agregar_pbtn.btn.btn-default[title="Agregar persona"]
+              i#agregar_p.glyphicon.glyphicon-plus
+        .col-xs-2
+          a[href=persons_icon_view_path('index')]
+            button.btn.btn-default
+              | Vista fotos
+
+#wrapper.affix
+  .overlay
+  nav#sidebar-wrapper.navbar.navbar-inverse[role="navigation"]
+    ul.nav.sidebar-nav
+      li.sidebar-brand
+        | SIDE
+      li
+        = link_to 'A', persons_list_view_path('A')
+      li
+        = link_to 'B', persons_list_view_path('B')
+      li
+        = link_to 'C', persons_list_view_path('C')
+      li
+        = link_to 'D', persons_list_view_path('D') 
+      li
+        = link_to 'E', persons_list_view_path('E')
+      li
+        = link_to 'F', persons_list_view_path('F')
+      li
+        = link_to 'G', persons_list_view_path('G')
+      li
+        = link_to 'H', persons_list_view_path('H')
+      li
+        = link_to 'I', persons_list_view_path('I')
+      li
+        = link_to 'J', persons_list_view_path('J')
+      li
+        = link_to 'K', persons_list_view_path('K')
+      li
+        = link_to 'L', persons_list_view_path('L')
+      li
+        = link_to 'M', persons_list_view_path('M')
+      li
+        = link_to 'N', persons_list_view_path('N')
+      li
+        = link_to 'O', persons_list_view_path('O')
+      li
+        = link_to 'P', persons_list_view_path('P')
+      li
+        = link_to 'Q', persons_list_view_path('Q')
+      li
+        = link_to 'R', persons_list_view_path('R')
+      li
+        = link_to 'S', persons_list_view_path('S')
+      li
+        = link_to 'T', persons_list_view_path('T')
+      li
+        = link_to 'U', persons_list_view_path('U')
+      li
+        = link_to 'V', persons_list_view_path('V')
+      li
+        = link_to 'W', persons_list_view_path('W')
+      li
+        = link_to 'X', persons_list_view_path('X')
+      li
+        = link_to 'Y', persons_list_view_path('Y')
+      li
+        = link_to 'Z', persons_list_view_path('Z')
+  #page-content-wrapper
+    button.hamburger.is-closed.animated.fadeInLeft[type="button" data-toggle="offcanvas"]
+      span.hamb-top
+      span.hamb-middle
+      span.hamb-bottom
+
+.container#prowcont
+  -@persons.each do |persona|
+    .row
+      .col-xs-2.text-center
+        .profile-header-container
+          .profile-header-img
+            img.img-circle[src="https://s-media-cache-ak0.pinimg.com/originals/7f/20/5d/7f205d3be7407e1069115bb963b3f2f8.jpg" width="100" height="100"]
+      .col-xs-7
+        .row
+          h3
+            p
+              = persona.Apellido
+              |  
+              = persona.Nombre
+        .row
+          .col-xs-1
+            i.glyphicon.glyphicon-map-marker.text-muted.c-info[aria-hidden="true" data-toggle="tooltip" title="Dirección"]
+          .col-xs-1
+            i.glyphicon.glyphicon-phone.text-muted.c-info[aria-hidden="true" data-toggle="tooltip" title="15-7777-7777"]
+          .col-xs-1
+            i.glyphicon.glyphicon-envelope.text-muted.c-info[data-toggle="tooltip" title=persona.Contacto]
+      .col-xs-3.text-center
+        .row
+          h3
+            a[href=person_path(persona) title="Ver"]
+              i.glyphicon.glyphicon-eye-open
+        .row
+          a[href=edit_person_path(persona) title="Editar"]
+            i.glyphicon.glyphicon-pencil
+    .row.text-start
+      .col-xs-10.col-xs-offset-2
+        p
+          | ________________________________________________________________________________________________________
+  .col-xs-12.text-center
+    =paginate @persons

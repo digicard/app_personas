@@ -1,0 +1,182 @@
+  form#personform
+    .form-group
+      .row
+        .col-xs-12.text-center
+          .profile-header-container
+            .profile-header-img
+              img#img_prev.img-thumbnail[width="267" height="269" src="/assets/default_avatar.png" alt="your image"]
+              br
+              span.btn.btn-info.btn-file
+                |  Seleccionar foto
+                = file_field :avatar, id: "avatar-upload"
+              br              
+
+
+              /img.img[src="https://s-media-cache-ak0.pinimg.com/originals/7f/20/5d/7f205d3be7407e1069115bb963b3f2f8.jpg"]
+        /.col-xs-12.text-center
+          label.custom-file
+            input#file.custom-file-input[type="file"]
+            span.custom-file-control
+
+      .col-xs-12.text-center
+        h1
+          p
+            strong
+              | Datos Personales
+
+      .col-xs-2.text-right
+        h5
+          p
+            strong
+              | Apellido
+      .col-xs-8
+        input#napellido.form-control[type="text" name="person[Apellido]"]
+      .col-xs-2
+        h2
+          p
+            | .
+
+      .col-xs-2.text-right
+        h5
+          p
+            strong
+              | Nombre/s
+      .col-xs-8
+        input#nnombre.form-control[type="text"]
+      .col-xs-2
+        h2
+          p
+            | .
+      
+      .col-xs-2.text-right
+        h5
+          p
+            strong
+              | Tipo documento
+      .col-xs-8
+        select#ntdoc.custom-select[style="margin-top:20"]
+          option[selected]
+            | Documento Nacional de Identidad
+          option[value="2"]
+            | Libreta de Enrolamiento
+          option[value="3"]
+            | Libreta Civica
+          option[value="4"]
+            | Cedula de Identidad
+
+      .col-xs-2
+        h2
+          p
+            | .
+
+      .col-xs-2.text-right
+        h5
+          p
+            strong
+              | Número documento
+      .col-xs-8
+        input#nndoc.form-control[name="" type="text"]
+      .col-xs-2
+        h2
+          p
+            | .
+
+      .col-xs-2.text-right
+        h5
+          p
+            strong
+              | CUIL
+      .col-xs-1
+        input#ncuil1.form-control[type="text"]
+      .col-xs-6
+        input#ncuil2.form-control[type="text"]
+      .col-xs-1
+        input#ncuil3.form-control[type="text"]
+      .col-xs-2
+        h2
+          p
+            | .
+
+      .col-xs-2.text-right
+        h5
+          p
+            strong
+              | Estado
+      .col-xs-8
+        .col-xs-6.text-center
+          input#radio1.custom-control-input[name="radio" type="radio" checked]
+            strong
+              | Habilitado
+        .col-xs-6.text-center
+          input#radio2.custom-control-input[name="radio" type="radio"]
+            strong
+              | Deshabilitado
+
+      .col-xs-2
+        h2
+          p
+            | .
+
+      /.col-xs-2
+        h5
+          p
+            strong
+              | Dirección:
+      /.col-xs-8
+        input#ndireccion.form-control[type="text"]
+      /.col-xs-2
+        h2
+          p
+            | .
+
+      /.col-xs-2
+        h5
+          p
+            strong
+              | Telefono:
+      /.col-xs-8
+        input#ntelefono.form-control[type="text"] 
+      /.col-xs-2
+        h2
+          p
+            | .
+
+      .col-xs-2.text-right
+        h5
+          p
+            strong
+              | Contacto
+      .col-xs-8
+        input#ncontacto.form-control[type="text"]
+      .col-xs-2
+        h2
+          p
+            | .
+
+      .col-xs-2.text-right
+        h5
+          p
+            strong
+              | Categoría
+      .col-xs-8
+        select#ncateg.custom-select
+          option[selected]
+            | Empleado
+          option[value="2"]
+            | Pasante
+          option[value="3"]
+            | Contratado
+          option[value="4"]
+            | Proveedor
+          option[value="5"]
+            | Visitante         
+      .col-xs-2
+        h2
+          p
+            | . 
+      
+      .col-xs-6.text-right
+        button#btn_cancel.btn.btn-default[type="button"]
+          | Cancelar
+      .col-xs-6.text-left
+        = button_to "Guardar", {action: "create"}, method: :post
